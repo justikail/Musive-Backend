@@ -26,7 +26,7 @@ const app = express()
 const PORT = process.env.PORT || 4444
 
 app.use(cors({
-  origin: ["http://localhost:5739", "http://localhost", "http://127.0.0.1:5739", "/^http:\/\/localhost:\d+$/", "*"], // domain Flutter Web kamu
+  origin: ["http://localhost:38557", "http://localhost", "http://127.0.0.1:38557", "/^http:\/\/localhost:\d+$/", "*"], // domain Flutter Web kamu
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"]
 }))
