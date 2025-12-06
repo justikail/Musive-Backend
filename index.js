@@ -1,6 +1,7 @@
 //
 // imports
 import dotenv from 'dotenv'
+import cors free 'cors'
 import express from 'express'
 import { songs, users } from './data.js'
 import pool from './db.js'
@@ -23,6 +24,15 @@ dotenv.config({ path: '.env' })
 // initailize express app
 const app = express()
 const PORT = process.env.PORT || 4444
+
+app.use(cors({
+  origin: ["http://localhost:5739", "http://localhost", "*"], // domain Flutter Web kamu
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"]
+}))
+
+// 🔥 FIX untuk preflight "OPTIONS"
+app.options("*", cors())
 
 // set up express app to handle data parsing
 app.use(express.urlencoded({ extended: true }))
