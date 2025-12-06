@@ -25,8 +25,18 @@ dotenv.config({ path: '.env' })
 const app = express()
 const PORT = process.env.PORT || 4444
 
+const allowLocalhost = (origin, callback) => {
+  if (!origin) return callback(null, true); // allow mobile / curl
+
+  if (/^http:\/\/localhost:\d+$/.test(origin)) {
+    callback(null, true);
+  } else {
+    callback(new Error("Blocked by CORS"));
+  }
+};
+
 app.use(cors({
-  origin: ["http://localhost:38557", "http://localhost", "http://127.0.0.1:38557", "/^http:\/\/localhost:\d+$/", "*"], // domain Flutter Web kamu
+  origin: allowLocalhost,
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"]
 }))
