@@ -1,7 +1,7 @@
 //
 // imports
 import dotenv from 'dotenv'
-import cors free 'cors'
+import cors from 'cors'
 import express from 'express'
 import { songs, users } from './data.js'
 import pool from './db.js'
